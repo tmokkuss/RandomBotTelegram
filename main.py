@@ -3,7 +3,7 @@ from aiogram.dispatcher import Dispatcher
 from aiogram.utils import executor
 import random
 
-bot = Bot(token='5704710100:AAH9M8v5M5xaf0gwpUYd45Q5LlQM3PEKsFo')
+bot = Bot(token='')
 dp = Dispatcher(bot)
 
 photos = ['3.png', '4.png', '5.png', '6.png', '7.png']
@@ -23,19 +23,19 @@ async def get_user_text(message):
     if message.text == 'Получить скидку':
         with open(random.choice(photos), 'rb') as photo:
             mess = f'Лови свою скидку и вперед к мечтам!'
-            mess2 = f'Чтобы применить скидку напиши мне: @AliceKdesign, и я забронирую место ✍'
+            mess2 = f'Чтобы применить скидку напиши мне: @, и я забронирую место ✍'
             markup = types.InlineKeyboardMarkup()
             remove = types.ReplyKeyboardRemove()
             back_chat = types.InlineKeyboardMarkup()
-            back_chat.add(types.InlineKeyboardButton("Вернуться в чат", url='https://t.me/AliceKdesign'))
+            back_chat.add(types.InlineKeyboardButton("Вернуться в чат", url='https://t.me/'))
             markup.add()
-            markup.add(types.InlineKeyboardButton("Профессия Веб-дизайнер вместе с Alice K", url='https://alicek.design/web-and-mobile-design-course/'))
+            markup.add(types.InlineKeyboardButton("Профессия Веб-дизайнер вместе с Alice K", url=''))
             await bot.send_message(message.chat.id, mess, reply_markup=remove)
             await bot.send_photo(message.chat.id, photo, reply_markup=markup)
             await bot.send_message(message.chat.id, mess2, reply_markup=back_chat)
             for i in range(1, 7):
                 if f'{i}' in str(photo):
-                    await bot.send_message(-1001874564021, f'username: {message.from_user.username}\nID: {message.from_user.id}\nСкидка: {i} %')
+                    await bot.send_message(CHAT_ID!, f'username: {message.from_user.username}\nID: {message.from_user.id}\nСкидка: {i} %')
             with open('data.csv', 'a') as csvfile:
                 csvfile.write(f'{message.from_user.username} {photo} \n')
 
